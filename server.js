@@ -71,26 +71,6 @@ app.post('/save-data', function(req, res){
     
     //Send confirmation email after data is saved to DB
 
-// transporter.sendMail({
-//   from: 'nandkishorsonune0@gmail.com',
-//   to: email,
-//   subject: 'StackFusion User Form Confirmation',
-//   text: `A new form has been submitted:
-//             First Name : ${firstName},
-//             Email: ${email},
-//             Phone Number : ${phoneNum},
-//             DoB : ${dob}`
-  
-
-// }, (err, info) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(`Email sent: ${info.response}`);
-//   }
-//   res.status(200).json({message : "Form data saved and confirmation email sent."})
-// });
-
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
