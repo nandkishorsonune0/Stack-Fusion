@@ -19,36 +19,35 @@ app.use(cors({
 const formSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: [true, 'Please Provide First Name']
+        required: [true, 'Please check your data entry, no name specified']
     },
     email: {
         type: String,
-        required: [true, 'Please Provide Email']
+        required: [true, 'Please check your data entry, no email specified']
     },
     phoneNum: {
         type: String,
-        required: [true, 'Please Provide Phone Number']
+        required: [true, 'Please check your data entry, no number specified']
     },
     dob: {
         type: String,
-        required: [true, 'Please Select your Birthdate']
+        required: [true, 'Please check your data entry, no dob specified']
     },
 })
-
 
 // Collection Model
 const Form = mongoose.model('form', formSchema)
 
 
 app.get('/', function(req, res){
-    res.status(200).send("Stack Fusion Server!")
+    res.status(200).send("Hello world!")
 })
 
 app.post('/save-data', function(req, res){
     
     const firstName = req.body.firstName
     const email = req.body.email
-    const phoneNum = req.body.phoneNum
+    const phoneNum = req.body.phoneNumber
     const dob = req.body.dob
 
     //Save to data in DB
@@ -80,7 +79,7 @@ app.post('/save-data', function(req, res){
     });
 
     const mailOptions = {
-        from: 'nandkishorsonune0@gmail.com',
+        form: 'nandkishorsonune0@gmail.com',
         to: email,
         subject: 'StackFusion User-Form Confirmation',
         text: `Form data submited :
@@ -103,31 +102,7 @@ app.post('/save-data', function(req, res){
     });
 
     res.status(200).json({message : "Form data saved and confirmation email sent."})
- 
-// transporter.sendMail({
-//   from: 'nandkishorsonune0@gmail.com',
-//   to: email,
-//   subject: 'StackFusion User Form Confirmation',
-//   text: `A new form has been submitted:
-//             First Name : ${firstName},
-//             Email: ${email},
-//             Phone Number : ${phoneNum},
-//             DoB : ${dob}`
-  
-
-// }, (err, info) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(`Email sent: ${info.response}`);
-//   }
-//   res.status(200).json({message : "Form data saved and confirmation email sent."})
-// });
 })
-
-
-
-
 
 // Read all forms
 app.get('/read-forms', function(req, res){
@@ -150,5 +125,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, function(){
-    console.log(`Server running on PORT : ${port}`)
+    console.log(`Server up and running on PORT : ${port}`)
 })
