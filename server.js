@@ -19,19 +19,19 @@ app.use(cors({
 const formSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: [true, 'Please check your data entry, no name specified']
+        required: [true, 'please Provide First Name']
     },
     email: {
         type: String,
-        required: [true, 'Please check your data entry, no email specified']
+        required: [true, 'Please Provide Email']
     },
     phoneNum: {
         type: String,
-        required: [true, 'Please check your data entry, no number specified']
+        required: [true, 'Please Please Provide Phone Number']
     },
     dob: {
         type: String,
-        required: [true, 'Please check your data entry, no dob specified']
+        required: [true, 'Please Provide Proper Birthdate']
     },
 })
 
@@ -40,7 +40,7 @@ const Form = mongoose.model('form', formSchema)
 
 
 app.get('/', function(req, res){
-    res.status(200).send("Hello world!")
+    res.status(200).send("Stack Fusion Backend")
 })
 
 app.post('/save-data', function(req, res){
@@ -70,6 +70,28 @@ app.post('/save-data', function(req, res){
 
     
     //Send confirmation email after data is saved to DB
+
+// transporter.sendMail({
+//   from: 'nandkishorsonune0@gmail.com',
+//   to: email,
+//   subject: 'StackFusion User Form Confirmation',
+//   text: `A new form has been submitted:
+//             First Name : ${firstName},
+//             Email: ${email},
+//             Phone Number : ${phoneNum},
+//             DoB : ${dob}`
+  
+
+// }, (err, info) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(`Email sent: ${info.response}`);
+//   }
+//   res.status(200).json({message : "Form data saved and confirmation email sent."})
+// });
+
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
